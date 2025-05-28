@@ -1,11 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',
-  imports: [],
   templateUrl: './pokemon-list.component.html',
-  styleUrl: './pokemon-list.component.scss'
+  styleUrls: ['./pokemon-list.component.scss']
 })
-export class PokemonListComponent {
+export class PokemonListComponent implements OnInit {
+  ListaPokemon: any[] = [];
 
+  constructor(private pokemonservice: PokemonService) {}
+
+  ngOnInit(): void {
+    this.getPokemones();
+  }
+
+  getPokemones(): void {
+    this.pokemonservice.getPokemones().subscribe({
+      next: (response: any) => {
+        this.ListaPokemon = response.results; 
+      },
+      error: (err) => {
+        console.error('Error al obtener los pokemones', err);
+      }
+    });
+  }
 }

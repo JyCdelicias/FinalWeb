@@ -1,37 +1,19 @@
-<p>pokemon-list works!</p>
-<div class="p-4">
-  <h1 class="text-2xl font-bold mb-4">Lista de Pokémon</h1>
-
-  <div class="overflow-auto max-h-[300px]">
-    <table class="table-auto w-full border-collapse border border-gray-300">
-      <thead>
-        <tr class="bg-gray-200">
-          <th class="border px-4 py-2">Nombre</th>
-          <th class="border px-4 py-2">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pokemon of pokemons">
-          <td class="border px-4 py-2 capitalize">{{ pokemon.name }}</td>
-          <td class="border px-4 py-2">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-              (click)="showDetails(pokemon.url)">
-              Ver Detalles
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="selectedPokemon" class="mt-6 p-4 border rounded bg-gray-50">
-    <h2 class="text-xl font-semibold mb-2">{{ selectedPokemon.name | titlecase }}</h2>
-    <img [src]="selectedPokemon.sprites.front_default" alt="{{ selectedPokemon.name }}" class="mb-4">
-    <h3 class="font-bold">Habilidades:</h3>
-    <ul>
-      <li *ngFor="let ability of selectedPokemon.abilities">
-        {{ ability.ability.name }}
-      </li>
-    </ul>
-  </div>
+<div class="container">
+  <h2>Lista de Pokemones</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pokemon of ListaPokemon">
+        <td>{{ pokemon.name }}</td>
+        <td>
+          <a [href]="pokemon.url" target="_blank">{{ pokemon.url }}</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
