@@ -20,8 +20,9 @@ export class PokemonListComponent implements OnInit {
 
   getPokemones(): void {
     this.pokemonservice.getPokemones().subscribe({
-      next: (response) => {
-        this.ListaPokemon = response;
+      next: (response: any) => {
+        console.log('Respuesta API:', response);  
+        this.ListaPokemon = response.results;    
       },
       error: (err) => {
         console.error('Error al obtener los pokemones', err);
